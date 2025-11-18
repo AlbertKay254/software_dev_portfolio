@@ -1,8 +1,16 @@
 // app/components/WorkGallery.js
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useRef } from "react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
+} from "lucide-react";
+import Image from "next/image";
 
 const galleryItems = [
   {
@@ -12,108 +20,232 @@ const galleryItems = [
     date: "NOV 2023",
     description:
       "Showcased two pieces in abstract and digital artists exhibition",
+    images: ["/gallery/ardhi1.png", "/gallery/ardhi2.png"],
   },
   {
     id: 2,
-    title: "PAWA254 EXHIBITION",
-    category: "CONTEMPORARY ART",
-    date: "AUG 2024",
-    description: "Presented work in curated showcase of Kenyan artists",
+    title: "TYPOGRAPHY PROJECT",
+    category: "TYPOGRAPHY DESIGN",
+    date: "2025",
+    description: "Exploration of typography in modern design",
+    images: [
+      "/gallery/type2.jpg",
+      "/gallery/type.jpg",
+      "/gallery/type3.jpg",
+      "/gallery/type4.png",
+      "/gallery/type5.jpg",
+    ],
   },
   {
     id: 3,
-    title: "HMIS SYSTEM",
-    category: "UI/UX DESIGN",
-    date: "2023",
-    description: "Hospital Management Information System interface design",
+    title: "JOAN OF ARC",
+    category: "DIGITAL DESIGN",
+    date: "2024",
+    description:
+      "A project exploring Joan of Arc (a historical figure) in modern art",
+    images: [
+      "/gallery/joan1.png",
+      "/gallery/joan2.png",
+      "/gallery/joan3.png",
+      "/gallery/joan4.png",
+      "/gallery/joan5.png",
+      "/gallery/joan6.png",
+    ],
   },
   {
     id: 4,
-    title: "BRAND IDENTITY",
-    category: "LOGO DESIGN",
-    date: "2023",
-    description: "Modern typography and brand identity projects",
+    title: "SWAP CIRCLE",
+    category: "POSTER DESIGN",
+    date: "2025",
+    description: "Poster for the swap circle event at Chimek Restaurant",
+    images: ["/gallery/korea_swap.png"],
   },
   {
     id: 5,
-    title: "EVENT POSTERS",
-    category: "GRAPHIC DESIGN",
+    title: "SWAP CIRCLE",
+    category: "POSTER DESIGN",
     date: "2022",
-    description: "Promotional materials for SWAP CIRCLE events",
+    description: "Promotional poster for swap circle kisumu",
+    images: ["/gallery/swp_kisumu.png"],
   },
   {
     id: 6,
     title: "PHOTO MANIPULATION",
     category: "DIGITAL ART",
-    date: "2022",
+    date: "2025",
     description: "Advanced photo editing and retouching projects",
+    images: ["/gallery/ECLIPSE_.jpg", "/gallery/godfaces.png"],
   },
   {
     id: 7,
-    title: "SOCIAL MEDIA",
-    category: "DIGITAL DESIGN",
-    date: "2023",
-    description: "Vibrant graphics for online presence",
+    title: "COLLAGE ART",
+    category: "DIGITAL COLLAGE DESIGN",
+    date: "2022",
+    description: "Using mixed media to create unique visual stories",
+    images: ["/gallery/ardhi2.png"],
   },
   {
     id: 8,
     title: "DIGITAL ILLUSTRATION",
     category: "ART",
-    date: "2023",
+    date: "2025",
     description: "Self-initiated illustration projects",
+    images: ["/gallery/PRELUDE_1_.jpg", "/gallery/sky_.png"],
   },
   {
     id: 9,
-    title: "WEB COMPONENTS",
-    category: "FRONTEND",
-    date: "2023",
-    description: "UI components and web interfaces",
+    title: "HIERARCHY PROJECT",
+    category: "HIERARCHY DESIGN",
+    date: "2025",
+    description: "A project showcasing design hierarchy principles",
+    images: [
+      "/gallery/hierachy2.png",
+      "/gallery/hierachy.png",
+      "/gallery/hierachy3.png",
+      "/gallery/hierachy4.png",
+      "/gallery/hierachy5.png",
+    ],
   },
   {
     id: 10,
-    title: "MARKETING MATERIALS",
-    category: "PRINT DESIGN",
-    date: "2023",
-    description: "Posters, banners and pamphlets for CHAK",
+    title: "PAWA254 EXHIBITION",
+    category: "CONTEMPORARY ART",
+    date: "AUG 2024",
+    description: "Presented work in curated showcase of Kenyan artists",
+    images: ["/gallery/pawa254.png"],
   },
   {
     id: 11,
-    title: "TYPOGRAPHY",
+    title: "MOCKUPS",
     category: "DESIGN",
-    date: "2023",
-    description: "Modern font and type design exploration",
+    date: "2024",
+    description: "Various branding and product mockups",
+    images: ["/gallery/mockup.png"],
   },
   {
     id: 12,
-    title: "PORTFOLIO WORK",
-    category: "MIXED MEDIA",
-    date: "2024",
-    description: "Various personal and client projects",
+    title: "CONCEPT ART",
+    category: "DIGITAL ART",
+    date: "2025",
+    description: "Concept art pieces for various projects",
+    images: [
+      "/gallery/perfect.jpg",
+    ],
   },
 ];
 
 export default function WorkGallery() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef(null);
 
   const openModal = (index) => {
-    setSelectedImage(galleryItems[index]);
+    setSelectedItem(galleryItems[index]);
     setCurrentIndex(index);
+    setCurrentImageIndex(0);
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
   };
 
-  const closeModal = () => setSelectedImage(null);
+  const closeModal = () => setSelectedItem(null);
 
-  const nextImage = () => {
+  const nextItem = () => {
     const nextIndex = (currentIndex + 1) % galleryItems.length;
     setCurrentIndex(nextIndex);
-    setSelectedImage(galleryItems[nextIndex]);
+    setSelectedItem(galleryItems[nextIndex]);
+    setCurrentImageIndex(0);
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
   };
 
-  const prevImage = () => {
+  const prevItem = () => {
     const prevIndex =
       (currentIndex - 1 + galleryItems.length) % galleryItems.length;
     setCurrentIndex(prevIndex);
-    setSelectedImage(galleryItems[prevIndex]);
+    setSelectedItem(galleryItems[prevIndex]);
+    setCurrentImageIndex(0);
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const nextImage = () => {
+    if (selectedItem) {
+      const nextIndex = (currentImageIndex + 1) % selectedItem.images.length;
+      setCurrentImageIndex(nextIndex);
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedItem) {
+      const prevIndex =
+        (currentImageIndex - 1 + selectedItem.images.length) %
+        selectedItem.images.length;
+      setCurrentImageIndex(prevIndex);
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const zoomIn = () => {
+    setZoomLevel((prev) => Math.min(prev + 0.5, 3));
+  };
+
+  const zoomOut = () => {
+    setZoomLevel((prev) => Math.max(prev - 0.5, 1));
+    if (zoomLevel <= 1) {
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const resetZoom = () => {
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const handleMouseDown = (e) => {
+    if (zoomLevel > 1) {
+      setIsDragging(true);
+      setStartPosition({
+        x: e.clientX - position.x,
+        y: e.clientY - position.y,
+      });
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging && zoomLevel > 1) {
+      const newX = e.clientX - startPosition.x;
+      const newY = e.clientY - startPosition.y;
+
+      const container = imageRef.current?.parentElement;
+      if (container) {
+        const containerRect = container.getBoundingClientRect();
+        const maxX = (containerRect.width * (zoomLevel - 1)) / 2;
+        const maxY = (containerRect.height * (zoomLevel - 1)) / 2;
+
+        setPosition({
+          x: Math.max(Math.min(newX, maxX), -maxX),
+          y: Math.max(Math.min(newY, maxY), -maxY),
+        });
+      }
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const selectImage = (index) => {
+    setCurrentImageIndex(index);
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
   };
 
   return (
@@ -146,16 +278,21 @@ export default function WorkGallery() {
                   onClick={() => openModal(row * 3 + index)}
                 >
                   <div className="p-1 border-2 border-white group-hover:border-black transition-colors">
-                    {/* Image Placeholder */}
-                    <div className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center border border-gray-400">
-                      <div className="text-center">
-                        <div className="text-black font-tech text-lg mb-2">
-                          {item.title}
+                    {/* Actual Image - Show first image as thumbnail */}
+                    <div className="w-full h-64 relative border border-gray-400">
+                      <Image
+                        src={item.images[0]}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      {/* Multiple Images Badge */}
+                      {item.images.length > 1 && (
+                        <div className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 font-tech">
+                          +{item.images.length - 1}
                         </div>
-                        <div className="text-gray-600 text-sm">
-                          {item.category}
-                        </div>
-                      </div>
+                      )}
                     </div>
 
                     <div className="p-4 border-t border-gray-200">
@@ -177,7 +314,7 @@ export default function WorkGallery() {
         </div>
 
         {/* Modal */}
-        {selectedImage && (
+        {selectedItem && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -187,59 +324,182 @@ export default function WorkGallery() {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-white terminal-border max-w-4xl w-full"
+              className="bg-white terminal-border max-w-5xl w-full max-h-[90vh] overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-1">
-                <div className="border-2 border-black bg-white p-6">
-                  <div className="flex justify-between items-start mb-6">
-                    <div>
-                      <h3 className="text-2xl font-tech font-bold mb-2 text-black">
-                        {selectedImage.title}
-                      </h3>
-                      <p className="text-gray-600 font-tech">
-                        {selectedImage.category}
-                      </p>
-                    </div>
-                    <button
-                      onClick={closeModal}
-                      className="p-2 hover:bg-black hover:text-white transition-colors border border-black"
-                    >
-                      <X size={20} />
-                    </button>
-                  </div>
-
-                  <div className="bg-gray-100 border border-gray-400 h-96 mb-6 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-2xl font-tech text-black mb-4">
-                        {selectedImage.title}
+                <div className="border-2 border-black bg-white">
+                  {/* Header with Description */}
+                  <div className="p-6 border-b border-gray-200">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="flex-1 max-w-2xl">
+                        <h3 className="text-2xl font-tech font-bold mb-2 text-black">
+                          {selectedItem.title}
+                        </h3>
+                        <div className="flex items-center space-x-4 mb-3">
+                          <p className="text-gray-600 font-tech">
+                            {selectedItem.category}
+                          </p>
+                          <span className="font-tech text-sm bg-black text-white px-3 py-1">
+                            {selectedItem.date}
+                          </span>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed">
+                          {selectedItem.description}
+                        </p>
                       </div>
-                      <div className="text-gray-600">
-                        {selectedImage.description}
+                      <div className="flex items-center space-x-2 flex-shrink-0">
+                        {/* Zoom Controls */}
+                        <div className="flex items-center space-x-1 mr-4">
+                          <button
+                            onClick={zoomOut}
+                            disabled={zoomLevel <= 1}
+                            className="p-2 border border-black hover:bg-black hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            title="Zoom Out"
+                          >
+                            <ZoomOut size={16} />
+                          </button>
+                          <button
+                            onClick={resetZoom}
+                            className="p-2 border border-black hover:bg-black hover:text-white transition-colors"
+                            title="Reset Zoom"
+                          >
+                            <RotateCcw size={16} />
+                          </button>
+                          <button
+                            onClick={zoomIn}
+                            disabled={zoomLevel >= 3}
+                            className="p-2 border border-black hover:bg-black hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            title="Zoom In"
+                          >
+                            <ZoomIn size={16} />
+                          </button>
+                        </div>
+                        <button
+                          onClick={closeModal}
+                          className="p-2 hover:bg-black hover:text-white transition-colors border border-black"
+                        >
+                          <X size={20} />
+                        </button>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center">
-                    <p className="text-gray-700">{selectedImage.description}</p>
-                    <span className="font-tech text-sm bg-black text-white px-3 py-1">
-                      {selectedImage.date}
-                    </span>
+                  {/* Image Container with Zoom */}
+                  <div
+                    className="relative h-96 bg-gray-100 border-b border-gray-400 overflow-hidden cursor-move"
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                  >
+                    <div
+                      ref={imageRef}
+                      className="w-full h-full flex items-center justify-center"
+                      style={{
+                        transform: `scale(${zoomLevel}) translate(${position.x}px, ${position.y}px)`,
+                        transition: isDragging ? "none" : "transform 0.2s ease",
+                        cursor:
+                          zoomLevel > 1
+                            ? isDragging
+                              ? "grabbing"
+                              : "grab"
+                            : "default",
+                      }}
+                    >
+                      <Image
+                        src={selectedItem.images[currentImageIndex]}
+                        alt={`${selectedItem.title} - Image ${
+                          currentImageIndex + 1
+                        }`}
+                        width={800}
+                        height={600}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+
+                    {/* Image Navigation Arrows */}
+                    {selectedItem.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 text-white hover:bg-opacity-75 transition-all border border-white"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 text-white hover:bg-opacity-75 transition-all border border-white"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+                      </>
+                    )}
+
+                    {/* Image Counter */}
+                    {selectedItem.images.length > 1 && (
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-sm px-3 py-1 font-tech border border-white">
+                        {currentImageIndex + 1} / {selectedItem.images.length}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex justify-between mt-6">
-                    <button
-                      onClick={prevImage}
-                      className="p-2 border border-black hover:bg-black hover:text-white transition-colors"
-                    >
-                      <ChevronLeft size={20} />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="p-2 border border-black hover:bg-black hover:text-white transition-colors"
-                    >
-                      <ChevronRight size={20} />
-                    </button>
+                  {/* Thumbnail Gallery */}
+                  {selectedItem.images.length > 1 && (
+                    <div className="p-4 border-b border-gray-200 bg-gray-50">
+                      <div className="flex space-x-2 overflow-x-auto pb-2">
+                        {selectedItem.images.map((image, index) => (
+                          <button
+                            key={index}
+                            onClick={() => selectImage(index)}
+                            className={`flex-shrink-0 w-16 h-16 relative border-2 transition-all ${
+                              index === currentImageIndex
+                                ? "border-black bg-black"
+                                : "border-gray-300 hover:border-gray-600"
+                            }`}
+                          >
+                            <Image
+                              src={image}
+                              alt={`Thumbnail ${index + 1}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Footer */}
+                  <div className="p-4 bg-gray-50">
+                    <div className="flex justify-between items-center">
+                      <div className="text-xs text-gray-500 font-tech">
+                        {selectedItem.images.length > 1 && (
+                          <span className="mr-4">
+                            Images: {currentImageIndex + 1}/
+                            {selectedItem.images.length}
+                          </span>
+                        )}
+                        Zoom: {Math.round(zoomLevel * 100)}%{" "}
+                        {zoomLevel > 1 && "• Drag to pan"}
+                      </div>
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={prevItem}
+                          className="p-2 border border-black hover:bg-black hover:text-white transition-colors"
+                          title="Previous Project"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button
+                          onClick={nextItem}
+                          className="p-2 border border-black hover:bg-black hover:text-white transition-colors"
+                          title="Next Project"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

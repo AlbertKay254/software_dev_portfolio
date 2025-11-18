@@ -1,39 +1,40 @@
 // app/components/Contact.js
 "use client";
 import { motion } from "framer-motion";
-import { Mail, Phone, Instagram, ExternalLink } from "lucide-react";
+import { Mail, Phone, Instagram, ExternalLink, Send } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-6">
-      <div className="container mx-auto">
+    <section id="contact" className="py-16 px-6 bg-black text-white">
+      <div className="container mx-auto max-w-4xl">
         <motion.h2
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold text-center mb-16 gradient-text"
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-tech font-bold text-center mb-12 terminal-glitch"
         >
           LET'S CREATE
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
           >
-            <h3 className="text-3xl font-bold mb-8">Get In Touch</h3>
+            <h3 className="text-xl font-tech font-bold mb-6 border-b border-white pb-2">
+              GET IN TOUCH
+            </h3>
 
-            <div className="creative-border rounded-xl p-1">
-              <div className="bg-dark rounded-xl p-6 flex items-center space-x-4 hover:bg-white/5 transition-colors">
-                <Mail className="text-primary" size={24} />
+            <div className="terminal-border bg-white p-1 hover:translate-x-1 transition-transform">
+              <div className="bg-black p-4 flex items-center space-x-3">
+                <Mail className="text-white" size={18} />
                 <div>
-                  <p className="font-semibold">Email</p>
                   <a
                     href="mailto:albertkaimenyi254@gmail.com"
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="font-tech text-sm hover:underline transition-all"
                   >
                     albertkaimenyi254@gmail.com
                   </a>
@@ -41,14 +42,13 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="creative-border rounded-xl p-1">
-              <div className="bg-dark rounded-xl p-6 flex items-center space-x-4 hover:bg-white/5 transition-colors">
-                <Phone className="text-secondary" size={24} />
+            <div className="terminal-border bg-white p-1 hover:translate-x-1 transition-transform">
+              <div className="bg-black p-4 flex items-center space-x-3">
+                <Phone className="text-white" size={18} />
                 <div>
-                  <p className="font-semibold">Phone</p>
                   <a
                     href="tel:+254702519938"
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="font-tech text-sm hover:underline transition-all"
                   >
                     +254 702 519 938
                   </a>
@@ -56,37 +56,35 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="creative-border rounded-xl p-1">
-              <div className="bg-dark rounded-xl p-6 flex items-center space-x-4 hover:bg-white/5 transition-colors">
-                <Instagram className="text-accent" size={24} />
+            <div className="terminal-border bg-white p-1 hover:translate-x-1 transition-transform">
+              <div className="bg-black p-4 flex items-center space-x-3">
+                <Instagram className="text-white" size={18} />
                 <div>
-                  <p className="font-semibold">Portfolio</p>
                   <a
-                    href="https://www.instagram.com/lucid.craft"
+                    href="https://www.instagram.com/lucid.craft_"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white transition-colors flex items-center space-x-2"
+                    className="font-tech text-sm hover:underline transition-all flex items-center space-x-2"
                   >
                     <span>@lucid.craft</span>
-                    <ExternalLink size={16} />
+                    <ExternalLink size={14} />
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="creative-border rounded-xl p-1">
-              <div className="bg-dark rounded-xl p-6 flex items-center space-x-4 hover:bg-white/5 transition-colors">
-                <ExternalLink className="text-primary" size={24} />
+            <div className="terminal-border bg-white p-1 hover:translate-x-1 transition-transform">
+              <div className="bg-black p-4 flex items-center space-x-3">
+                <ExternalLink className="text-white" size={18} />
                 <div>
-                  <p className="font-semibold">Kaleido Portfolio</p>
                   <a
                     href="https://www.kaleido.art/links/alberKay"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white transition-colors flex items-center space-x-2"
+                    className="font-tech text-sm hover:underline transition-all flex items-center space-x-2"
                   >
-                    <span>View on Kaleido</span>
-                    <ExternalLink size={16} />
+                    <span>Kaleido Portfolio</span>
+                    <ExternalLink size={14} />
                   </a>
                 </div>
               </div>
@@ -95,46 +93,72 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="creative-border rounded-2xl p-1"
+            transition={{ duration: 0.6 }}
+            className="terminal-border bg-white p-1"
           >
-            <div className="bg-dark rounded-2xl p-8">
-              <h3 className="text-3xl font-bold mb-6">Send a Message</h3>
-              <form className="space-y-6">
+            <div className="bg-black p-6">
+              <h3 className="text-xl font-tech font-bold mb-6 border-b border-white pb-2">
+                SEND MESSAGE
+              </h3>
+              <form className="space-y-4">
                 <div>
                   <input
                     type="text"
-                    placeholder="Your Name"
-                    className="w-full bg-white/10 rounded-xl px-4 py-3 border border-white/20 focus:border-primary focus:outline-none transition-colors"
+                    placeholder="YOUR NAME"
+                    className="w-full bg-white text-black font-tech text-sm px-4 py-3 border border-white focus:outline-none focus:border-gray-400 transition-colors placeholder-gray-600"
                   />
                 </div>
                 <div>
                   <input
                     type="email"
-                    placeholder="Your Email"
-                    className="w-full bg-white/10 rounded-xl px-4 py-3 border border-white/20 focus:border-secondary focus:outline-none transition-colors"
+                    placeholder="YOUR EMAIL"
+                    className="w-full bg-white text-black font-tech text-sm px-4 py-3 border border-white focus:outline-none focus:border-gray-400 transition-colors placeholder-gray-600"
                   />
                 </div>
                 <div>
                   <textarea
-                    placeholder="Your Message"
-                    rows="5"
-                    className="w-full bg-white/10 rounded-xl px-4 py-3 border border-white/20 focus:border-accent focus:outline-none transition-colors resize-none"
+                    placeholder="YOUR MESSAGE"
+                    rows="4"
+                    className="w-full bg-white text-black font-tech text-sm px-4 py-3 border border-white focus:outline-none focus:border-gray-400 transition-colors resize-none placeholder-gray-600"
                   ></textarea>
                 </div>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 rounded-xl hover:shadow-lg transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-white text-black font-tech font-bold py-3 border border-white hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center space-x-2"
                 >
-                  SEND MESSAGE
+                  <Send size={16} />
+                  <span>SEND MESSAGE</span>
                 </motion.button>
               </form>
             </div>
           </motion.div>
         </div>
+
+        {/* Quick Links Footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-12 pt-8 border-t border-gray-700"
+        >
+          <div className="flex justify-center space-x-6 text-sm font-tech">
+            <a href="#work" className="hover:underline transition-all">
+              WORK
+            </a>
+            <a href="#experience" className="hover:underline transition-all">
+              SKILLS
+            </a>
+            <a href="#contact" className="hover:underline transition-all">
+              CONTACT
+            </a>
+          </div>
+          <p className="text-gray-400 text-xs mt-4 font-tech">
+            © 2025 ALBERT KAIMENYI. NAIROBI, KENYA
+          </p>
+        </motion.div>
       </div>
     </section>
   );

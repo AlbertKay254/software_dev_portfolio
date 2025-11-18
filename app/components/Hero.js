@@ -1,7 +1,8 @@
 // app/components/Hero.js
 "use client";
 import { motion } from "framer-motion";
-import { ChevronDown, Mail, Instagram } from "lucide-react";
+import { ChevronDown, Mail, Instagram, CameraIcon } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -19,12 +20,14 @@ export default function Hero() {
               <div className="border-2 border-black p-2 bg-gray-100">
                 {/* Profile Image Placeholder - Replace with actual image */}
                 <div className="w-full h-96 bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center border border-black">
-                  <span className="text-black text-lg font-tech">
-                    ALBERT KAIMENYI
-                  </span>
+                  <img
+                    src="/portfolio.jpg"
+                    alt="Albert Kaimenyi"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="mt-2 p-2 bg-black text-white text-center text-sm">
-                  GRAPHIC DESIGNER | NAIROBI
+                  GRAPHIC DESIGNER | SOFTWARE DEVELOPER
                 </div>
               </div>
             </div>
@@ -99,11 +102,18 @@ export default function Hero() {
                   <span>EMAIL</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/lucid.craft"
+                  href="https://www.instagram.com/lucid.craft_"
                   className="flex items-center space-x-2 text-sm hover:underline"
                 >
                   <Instagram size={16} />
                   <span>INSTAGRAM</span>
+                </a>
+                <a
+                  href="https://www.behance.net/albertkay_"
+                  className="flex items-center space-x-2 text-sm hover:underline"
+                >
+                  <CameraIcon size={16} />
+                  <span>BEHANCE</span>
                 </a>
               </motion.div>
             </div>
