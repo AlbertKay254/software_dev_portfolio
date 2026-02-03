@@ -27,7 +27,7 @@ export default function Hero() {
                   />
                 </div>
                 <div className="mt-2 p-2 bg-black text-white text-center text-sm">
-                  GRAPHIC DESIGNER | SOFTWARE DEVELOPER
+                  SOFTWARE DEVELOPER | GRAPHIC DESIGNER
                 </div>
               </div>
             </div>
@@ -59,9 +59,10 @@ export default function Hero() {
                 className="space-y-4 text-black"
               >
                 <p className="text-lg leading-relaxed border-l-4 border-black pl-4">
-                  Nairobi-based self-taught digital artist blending Computer
-                  Science expertise with graphic design to create compelling
-                  visual experiences.
+                  As a software developer, I specialize in modern full-stack
+                  development, creating both web and mobile platforms for
+                  healthcare management. I bring ideas to life with robust,
+                  user-centered solutions.
                 </p>
 
                 <p className="text-sm text-gray-700">
@@ -70,19 +71,19 @@ export default function Hero() {
 
                 <div className="flex flex-wrap gap-2 mt-6">
                   <span className="px-3 py-1 bg-black text-white text-xs border border-black">
-                    PHOTOSHOP
+                    FULLSTACK
                   </span>
                   <span className="px-3 py-1 bg-black text-white text-xs border border-black">
-                    ILLUSTRATOR
+                    JAVASCRIPT
                   </span>
                   <span className="px-3 py-1 bg-black text-white text-xs border border-black">
-                    FIGMA
+                    FLUTTER
                   </span>
                   <span className="px-3 py-1 bg-black text-white text-xs border border-black">
                     UI/UX
                   </span>
                   <span className="px-3 py-1 bg-black text-white text-xs border border-black">
-                    WEB DEV
+                    DATABASE
                   </span>
                 </div>
               </motion.div>
@@ -102,18 +103,11 @@ export default function Hero() {
                   <span>EMAIL</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/lucid.craft_"
+                  href="https://www.linkedin.com/in/albert-kaimenyi-98197326b/"
                   className="flex items-center space-x-2 text-sm hover:underline"
                 >
                   <Instagram size={16} />
-                  <span>INSTAGRAM</span>
-                </a>
-                <a
-                  href="https://www.behance.net/albertkay_"
-                  className="flex items-center space-x-2 text-sm hover:underline"
-                >
-                  <CameraIcon size={16} />
-                  <span>BEHANCE</span>
+                  <span>linkedin</span>
                 </a>
               </motion.div>
             </div>

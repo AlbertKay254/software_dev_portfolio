@@ -1,36 +1,68 @@
 // app/components/Experience.js
 "use client";
 import { motion } from "framer-motion";
-import { Palette, Film, Smartphone } from "lucide-react";
+import { Code2, Globe, Smartphone, Database, Palette, Cpu } from "lucide-react";
 
 const skills = [
-  { name: "Adobe Photoshop", icon: Palette, level: 90 },
-  { name: "Adobe Illustrator", icon: Palette, level: 85 },
-  { name: "Premier Pro", icon: Film, level: 80 },
-  { name: "Lightroom", icon: Palette, level: 88 },
-  { name: "Figma", icon: Smartphone, level: 85 },
-  { name: "UI/UX Design", icon: Smartphone, level: 85 },
+  {
+    name: "Frontend Development",
+    icon: Globe,
+    level: 90,
+    tech: "React, NextJS, HTML/CSS, Tailwind",
+  },
+  {
+    name: "Backend Development",
+    icon: Code2,
+    level: 85,
+    tech: "Node.js, Express, Django, PHP",
+  },
+  {
+    name: "Mobile Development",
+    icon: Smartphone,
+    level: 85,
+    tech: "Flutter, Dart, React Native",
+  },
+  {
+    name: "Database Management",
+    icon: Database,
+    level: 80,
+    tech: "MongoDB, SQL, PostgreSQL",
+  },
+  {
+    name: "Programming Languages",
+    icon: Cpu,
+    level: 88,
+    tech: "JavaScript, TypeScript, Python, Java, C++",
+  },
+  {
+    name: "UI/UX & Design Tools",
+    icon: Palette,
+    level: 85,
+    tech: "Figma, Adobe Suite, Tailwind, ChakraUI",
+  },
 ];
 
 const experiences = [
   {
-    year: "2023 - Present",
-    title: "Web Design & Development ",
-    company: "CHAK",
-    description: "Developed HMIS system UI/UX and marketing materials",
-  },
-  {
-    year: "2022 - Present",
-    title: "Graphic Designer",
-    company: "SWAP CIRCLE",
+    year: "Jan 2024 - Present",
+    title: "Assistant Developer",
+    company: "Christian Health Association of Kenya (CHAK)",
     description:
-      "Created promotional graphics and posters for the swap circle events",
+      "Developing CHMIS (Hospital Management Information System) with Next.js & TailwindCSS. Handling frontend UI/UX design and creating marketing materials. Currently leading mobile app development with Flutter.",
   },
   {
-    year: "2020 - Present",
-    title: "Independent Projects",
-    company: "Freelance",
-    description: "Self-taught design software and personal projects",
+    year: "Jan 2023 - Jun 2023",
+    title: "Full-Stack Developer",
+    company: "Find n Dine Restaurant App",
+    description:
+      "Individually built a restaurant locating application using React JS and MongoDB. Implemented GPS functionality and restaurant upload features.",
+  },
+  {
+    year: "Feb 2022 - May 2022",
+    title: "Chatroom App Developer",
+    company: "Kenyatta University Project",
+    description:
+      "Collaborated in a team of 3 to develop a real-time chatroom with NodeJS. Implemented bad-word filtering and optimized application performance.",
   },
 ];
 
@@ -51,7 +83,7 @@ export default function Experience() {
           {/* Skills */}
           <div>
             <h3 className="text-xl font-tech font-bold mb-6 text-black border-b border-black pb-2">
-              TECHNICAL SKILLS
+              TECHNICAL EXPERTISE
             </h3>
             <div className="space-y-4">
               {skills.map((skill, index) => (
@@ -74,9 +106,14 @@ export default function Experience() {
                           className="text-black group-hover:scale-110 transition-transform duration-200"
                           size={18}
                         />
-                        <span className="font-tech text-sm text-black group-hover:font-bold transition-all duration-200">
-                          {skill.name}
-                        </span>
+                        <div>
+                          <span className="font-tech text-sm text-black group-hover:font-bold transition-all duration-200 block">
+                            {skill.name}
+                          </span>
+                          <span className="font-tech text-xs text-gray-600 group-hover:text-gray-800 transition-colors duration-200">
+                            {skill.tech}
+                          </span>
+                        </div>
                       </div>
                       <span className="font-tech text-xs bg-black text-white px-2 py-1 group-hover:bg-gray-800 transition-colors duration-200">
                         {skill.level}%
@@ -99,7 +136,7 @@ export default function Experience() {
           {/* Experience */}
           <div>
             <h3 className="text-xl font-tech font-bold mb-6 text-black border-b border-black pb-2">
-              EXPERIENCE
+              DEVELOPMENT EXPERIENCE
             </h3>
             <div className="space-y-4">
               {experiences.map((exp, index) => (
@@ -135,6 +172,25 @@ export default function Experience() {
                   </div>
                 </motion.div>
               ))}
+
+              {/* Additional Projects */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="terminal-border bg-black p-1 cursor-pointer group"
+              >
+                <div className="bg-black p-4 group-hover:bg-gray-900 transition-colors duration-200">
+                  <h5 className="font-tech text-white text-base mb-2 group-hover:font-bold transition-all duration-200">
+                    Additional Personal Projects
+                  </h5>
+                  <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-200">
+                    Music streaming app (JavaScript), Portfolio websites, and
+                    multiple open-source contributions on GitHub showcasing
+                    expertise in React, Node.js, and full-stack development.
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
