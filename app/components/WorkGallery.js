@@ -31,11 +31,7 @@ const projects = [
       "MongoDB",
       "TypeScript",
     ],
-    images: [
-      "/chmis-landing.png",
-      "/chmis-dashboard.png",
-      "/chmis-mobile.png",
-    ],
+    images: ["/chmis-landing.png", "/chmis-dashboard.png"],
     github: "https://github.com/AlbertKay254/chmis-landing-page",
     live: "https://chmis.chak.or.ke",
     role: "Lead Developer & UI/UX Designer",
@@ -48,7 +44,10 @@ const projects = [
     description:
       "Flutter-based mobile application extending the CHMIS platform to mobile devices. Features patient record management and secure medical data access.",
     technologies: ["Flutter", "Dart", "REST API", "Firebase", "Provider"],
-    images: ["/projects/chmis-mobile-app.png", "/projects/chmis-mobile-ui.png"],
+    images: [
+      // "/Screenshot 2026-03-03 104030.jpg",
+      // "/Screenshot 2026-03-03 104634.jpg",
+    ],
     github: "https://github.com/AlbertKay254/CHMIS_Mobile",
     live: null,
     role: "Lead Mobile Developer",
@@ -62,9 +61,9 @@ const projects = [
       "Restaurant discovery platform with GPS location and user-submitted restaurant features. Built as a personal project.",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Map API"],
     images: [
-      "/projects/findndine-home.png",
-      "/projects/findndine-map.png",
-      "/projects/findndine-details.png",
+      "/findndine-home.jpg",
+      "/findndine-map.jpg",
+      "/findndine-details.jpg",
     ],
     github: "https://github.com/AlbertKay254/find-n-dine",
     live: null,
@@ -78,7 +77,7 @@ const projects = [
     description:
       "Web-based music player that streams music from user's device. Features custom player controls and playlist management.",
     technologies: ["JavaScript", "HTML5", "CSS3", "Web Audio API"],
-    images: ["/projects/music-player.png", "/projects/music-player-ui.png"],
+    images: ["/Screenshot 2026-03-03 105258.jpg"],
     github: "https://github.com/AlbertKay254/kay-movies",
     live: null,
     role: "Frontend Developer",
@@ -91,43 +90,40 @@ const projects = [
     description:
       "Collaborative project building a real-time chat application with bad-word filtering and user authentication.",
     technologies: ["Node.js", "Socket.io", "Express", "MongoDB", "JavaScript"],
-    images: ["/projects/chatroom.png", "/projects/chatroom-ui.png"],
+    images: ["/Screenshot 2026-03-03 111458.jpg"],
     github: "https://github.com/ngareleo/chatroom-app",
     live: null,
     role: "Backend Developer & Team Member",
   },
-  // {
-  //   id: 6,
-  //   title: "Personal Portfolio Website",
-  //   category: "REACT APPLICATION",
-  //   date: "Ongoing",
-  //   description:
-  //     "This portfolio website showcasing my projects and skills. Built with Next.js and TailwindCSS.",
-  //   technologies: ["Next.js", "TailwindCSS", "Framer Motion", "React"],
-  //   images: [
-  //     "/projects/portfolio-home.png",
-  //     "/projects/portfolio-projects.png",
-  //   ],
-  //   github: "https://github.com/AlbertKay254/portfolio",
-  //   live: "https://albertkaimenyi.vercel.app",
-  //   role: "Full-Stack Developer",
-  // },
-  // {
-  //   id: 7,
-  //   title: "E-commerce Dashboard Concept",
-  //   category: "UI/UX DESIGN & DEVELOPMENT",
-  //   date: "2023",
-  //   description:
-  //     "Admin dashboard concept for e-commerce management with analytics and order processing.",
-  //   technologies: ["React", "Chart.js", "TailwindCSS", "Mock API"],
-  //   images: [
-  //     "/projects/ecommerce-dash.png",
-  //     "/projects/ecommerce-analytics.png",
-  //   ],
-  //   github: null,
-  //   live: null,
-  //   role: "UI/UX Designer & Developer",
-  // },
+  {
+    id: 6,
+    title: "Personal Portfolio Website",
+    category: "REACT APPLICATION",
+    date: "Ongoing",
+    description:
+      "This portfolio website showcasing my projects and skills. Built with Next.js and TailwindCSS.",
+    technologies: ["Next.js", "TailwindCSS", "Framer Motion", "React"],
+    images: ["/portfolio.jpg", "/Screenshot 2026-03-03 105943.jpg"],
+    github: "https://github.com/AlbertKay254/graphic_design_portfolio",
+    live: "https://albert-graphic-design-portfolio.vercel.app/",
+    role: "Full-Stack Developer",
+  },
+  {
+    id: 7,
+    title: "E-commerce Dashboard Concept",
+    category: "UI/UX DESIGN & DEVELOPMENT",
+    date: "2023",
+    description:
+      "Admin dashboard concept for e-commerce management with analytics and order processing.",
+    technologies: ["React", "Chart.js", "TailwindCSS", "Mock API"],
+    images: [
+      // "/Screenshot 2026-03-03 110001.jpg",
+      // "/Screenshot 2026-03-03 111458.jpg",
+    ],
+    github: null,
+    live: null,
+    role: "UI/UX Designer & Developer",
+  },
   {
     id: 8,
     title: "API Integration Middleware",
@@ -136,7 +132,7 @@ const projects = [
     description:
       "Custom middleware for integrating third-party APIs with healthcare systems at CHAK.",
     technologies: ["Node.js", "Express", "REST API", "JWT", "Redis"],
-    images: ["/projects/api-middleware.png"],
+    images: ["/chmis-dashboard.png"],
     github: null,
     live: "https://chmis.cbslkenya.co.ke",
     role: "Backend Developer",
@@ -149,7 +145,10 @@ const projects = [
     description:
       "Custom WordPress theme developed for the CHAK website with SEO optimization.",
     technologies: ["WordPress", "PHP", "JavaScript", "CSS", "SEO"],
-    images: ["/projects/wordpress-theme.png"],
+    images: [
+      "/Screenshot 2026-03-12 125558.jpg",
+      "/Screenshot 2026-03-12 125540.jpg",
+    ],
     github: null,
     live: "https://chak.or.ke",
     role: "WordPress Developer",
@@ -258,31 +257,50 @@ export default function WorkGallery() {
               onClick={() => openModal(index)}
             >
               <div className="p-1 border-2 border-white group-hover:border-black transition-colors h-full flex flex-col">
-                {/* Project Thumbnail */}
-                <div className="w-full h-48 relative border border-gray-300 bg-gray-100 flex items-center justify-center overflow-hidden">
+                {/* Project Thumbnail - Shows actual image */}
+                <div className="w-full h-48 relative border border-gray-300 bg-gray-900 overflow-hidden">
                   {project.images && project.images.length > 0 ? (
                     <>
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300" />
-                      <div className="relative z-10 text-center p-4">
-                        <div className="flex justify-center mb-3">
-                          {getCategoryIcon(project.category)}
-                        </div>
-                        <h3 className="font-tech font-bold text-lg text-black mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          {project.category}
-                        </p>
+                      <Image
+                        src={project.images[0]}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        onError={(e) => {
+                          console.error(
+                            `Failed to load image: ${project.images[0]}`,
+                          );
+                          // Fallback to a placeholder
+                          e.target.style.display = "none";
+                        }}
+                      />
+                      {/* Dark overlay for better text visibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+                      {/* Category Badge */}
+                      <div className="absolute top-2 left-2 bg-black bg-opacity-75 text-white px-2 py-1 text-xs font-tech rounded">
+                        {project.category}
                       </div>
+
                       {/* Multiple Images Badge */}
                       {project.images.length > 1 && (
-                        <div className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 font-tech">
-                          +{project.images.length - 1}
+                        <div className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 font-tech rounded">
+                          +{project.images.length}
                         </div>
                       )}
+
+                      {/* Project Title Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-3">
+                        <h3 className="font-tech font-bold text-white text-sm">
+                          {project.title.length > 40
+                            ? `${project.title.substring(0, 40)}...`
+                            : project.title}
+                        </h3>
+                      </div>
                     </>
                   ) : (
-                    <div className="flex flex-col items-center justify-center p-4">
+                    <div className="flex flex-col items-center justify-center h-full p-4 bg-gray-200">
                       {getCategoryIcon(project.category)}
                       <h3 className="font-tech font-bold text-lg text-black mt-2 text-center">
                         {project.title}
@@ -293,15 +311,13 @@ export default function WorkGallery() {
 
                 <div className="p-4 border-t border-gray-200 flex-grow">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-tech font-bold text-black text-sm">
-                      {project.title.length > 30
-                        ? `${project.title.substring(0, 30)}...`
-                        : project.title}
-                    </h3>
                     <span className="text-xs text-gray-600 bg-gray-100 px-2 py-1">
                       {project.date.includes("Present")
                         ? "Ongoing"
                         : project.date.split(" ")[2]}
+                    </span>
+                    <span className="text-xs font-tech text-gray-700">
+                      {project.role}
                     </span>
                   </div>
                   <p className="text-xs text-gray-600 mb-3 line-clamp-2">
@@ -309,17 +325,17 @@ export default function WorkGallery() {
                   </p>
 
                   {/* Technology Tags */}
-                  <div className="flex flex-wrap gap-1 mb-3">
+                  <div className="flex flex-wrap gap-1">
                     {project.technologies.slice(0, 3).map((tech, idx) => (
                       <span
                         key={idx}
-                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1"
+                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1">
+                      <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">
                         +{project.technologies.length - 3}
                       </span>
                     )}
@@ -358,8 +374,8 @@ export default function WorkGallery() {
                             <h3 className="text-2xl font-tech font-bold text-black">
                               {selectedProject.title}
                             </h3>
-                            <div className="flex items-center space-x-4 mt-1">
-                              <p className="text-gray-600 font-tech flex items-center">
+                            <div className="flex flex-wrap items-center gap-2 mt-1">
+                              <p className="text-gray-600 font-tech">
                                 {selectedProject.category}
                               </p>
                               <span className="font-tech text-sm bg-black text-white px-3 py-1">
@@ -428,47 +444,48 @@ export default function WorkGallery() {
                     </div>
                   </div>
 
-                  {/* Image Gallery */}
+                  {/* Image Gallery - Shows actual images */}
                   {selectedProject.images &&
                     selectedProject.images.length > 0 && (
                       <div className="p-6 border-b border-gray-200">
-                        <div className="relative h-64 md:h-80 bg-gray-100 border border-gray-300 overflow-hidden">
-                          <div className="w-full h-full flex items-center justify-center p-4">
-                            <div className="text-center">
-                              <div className="text-4xl mb-4">🚀</div>
-                              <p className="font-tech text-gray-600">
-                                Project Preview Images
-                              </p>
-                              <p className="text-sm text-gray-500 mt-2">
-                                {selectedProject.images.length} screenshot
-                                {selectedProject.images.length !== 1 ? "s" : ""}{" "}
-                                available
-                              </p>
-                            </div>
-                          </div>
+                        <div className="relative h-96 md:h-[500px] bg-gray-900 border border-gray-300 overflow-hidden">
+                          {/* Main Image */}
+                          <Image
+                            src={selectedProject.images[currentImageIndex]}
+                            alt={selectedProject.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+                            className="object-contain"
+                            priority
+                            onError={(e) => {
+                              console.error(
+                                `Failed to load image: ${selectedProject.images[currentImageIndex]}`,
+                              );
+                            }}
+                          />
 
                           {/* Image Navigation */}
                           {selectedProject.images.length > 1 && (
                             <>
                               <button
                                 onClick={prevImage}
-                                className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-75 text-white hover:bg-opacity-90 transition-all"
+                                className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-black bg-opacity-75 text-white hover:bg-opacity-90 transition-all rounded-full z-20"
                               >
-                                <ChevronLeft size={20} />
+                                <ChevronLeft size={24} />
                               </button>
                               <button
                                 onClick={nextImage}
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-75 text-white hover:bg-opacity-90 transition-all"
+                                className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-black bg-opacity-75 text-white hover:bg-opacity-90 transition-all rounded-full z-20"
                               >
-                                <ChevronRight size={20} />
+                                <ChevronRight size={24} />
                               </button>
                             </>
                           )}
 
                           {/* Image Counter */}
                           {selectedProject.images.length > 1 && (
-                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-3 py-1 font-tech">
-                              Preview {currentImageIndex + 1} /{" "}
+                            <div className="absolute top-4 left-4 bg-black text-white text-sm px-3 py-1 font-tech z-20 rounded">
+                              {currentImageIndex + 1} /{" "}
                               {selectedProject.images.length}
                             </div>
                           )}
@@ -478,21 +495,23 @@ export default function WorkGallery() {
                         {selectedProject.images.length > 1 && (
                           <div className="mt-4">
                             <div className="flex space-x-2 overflow-x-auto pb-2">
-                              {selectedProject.images.map((_, index) => (
+                              {selectedProject.images.map((image, index) => (
                                 <button
                                   key={index}
                                   onClick={() => selectImage(index)}
-                                  className={`flex-shrink-0 w-16 h-16 relative border-2 transition-all ${
+                                  className={`flex-shrink-0 w-20 h-20 relative border-2 transition-all overflow-hidden ${
                                     index === currentImageIndex
-                                      ? "border-black bg-black"
+                                      ? "border-black"
                                       : "border-gray-300 hover:border-gray-600"
                                   }`}
                                 >
-                                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                                    <span className="text-gray-600 text-sm">
-                                      {index + 1}
-                                    </span>
-                                  </div>
+                                  <Image
+                                    src={image}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    fill
+                                    sizes="80px"
+                                    className="object-cover"
+                                  />
                                 </button>
                               ))}
                             </div>
@@ -506,10 +525,10 @@ export default function WorkGallery() {
                     <div className="flex justify-between items-center">
                       <div className="text-sm text-gray-600 font-tech">
                         {selectedProject.images &&
-                          selectedProject.images.length > 1 && (
+                          selectedProject.images.length > 0 && (
                             <span className="mr-4">
-                              Preview: {currentImageIndex + 1}/
-                              {selectedProject.images.length}
+                              {selectedProject.images.length} image
+                              {selectedProject.images.length !== 1 ? "s" : ""}
                             </span>
                           )}
                         <span className="text-black font-bold">
